@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Management - Standard Room Booking</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+  
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="image/IMG6.png" alt="Hotel Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="rooms.html">Rooms</a>
+      <a href="booking.html">Booking</a>
+      <a href="feedback.html">Feedback</a>
+    </nav>
+  </header>
+
+  <!-- Standard Room Booking Form -->
+  <section>
+    <form action="submit_booking.php" method="POST" class="booking-form" onsubmit="return confirmBooking() && validateDates()">
+      <h2>Book Your Room</h2>
+
+      <!-- Room Type Dropdown with Tooltip Descriptions -->
+      <label for="room-type">Room Type</label>
+      <div class="tooltip">
+        <select id="room-type" name="room_type" required>
+          <option value="">--Select Room Type--</option>
+          <option value="Deluxe Suite">Deluxe Suite</option>
+          <option value="Family Room">Family Room</option>
+          <option value="Executive Room">Executive Room</option>
+          <option value="Luxury Suite">Luxury Suite</option>
+          <option value="Poolside Room">Poolside Room</option>
+          <option value="Standard Room">Standard Room</option>
+        </select>
+        <span class="tooltip-text" id="room-tooltip"></span>
+      </div>
+
+      <!-- Image Gallery for Selected Room -->
+      <div id="room-gallery" class="room-gallery">
+        <img id="room-image" src="image/IMG2.jpeg" alt="Room Image">
+      </div>
+
+      <!-- Name Field -->
+      <label for="full-name">Full Name</label>
+      <input type="text" id="full-name" name="full_name" aria-label="Full Name" required placeholder="Enter your full name">
+
+      <!-- Email Field with Real-time Validation -->
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" aria-label="Email Address" required placeholder="Enter your email address">
+
+      <!-- Mobile Number Field with Real-time Validation -->
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number">
+
+      <!-- Check-in Date -->
+      <label for="check-in">Check-in Date</label>
+      <input type="date" id="check-in" name="check_in" required>
+
+      <!-- Check-out Date -->
+      <label for="check-out">Check-out Date</label>
+      <input type="date" id="check-out" name="check_out" required>
+
+      <!-- Number of Guests -->
+      <label for="guests">Number of Guests</label>
+      <select id="guests" name="guests" required>
+        <option value="1">1 Guest</option>
+        <option value="2">2 Guests</option>
+        <option value="3">3 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="5">5 Guests</option>
+      </select>
+
+      <!-- Price Display -->
+      <label for="price">Estimated Price</label>
+      <input type="text" id="price" readonly>
+
+      <!-- Special Requests -->
+      <label for="requests">Special Requests (Optional)</label>
+      <textarea id="requests" name="requests" rows="4" placeholder="Any special requests or preferences?"></textarea>
+
+      <!-- Submit Button -->
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Our Hotel. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Data for price calculation and tooltip descriptions
+    const roomPrices = {
+      "Deluxe Suite": 200,
+      "Family Room": 150,
+      "Executive Room": 180,
+      "Luxury Suite": 250,
+      "Poolside Room": 220,
+      "Standard Room": 100
+    };
+
+    const roomDescriptions = {
+      "Deluxe Suite": "Spacious suite with king bed and ocean view.",
+      "Family Room": "Perfect for families, with two double beds.",
+      "Executive Room": "Ideal for business travelers with workspace.",
+      "Luxury Suite": "High-end suite with premium amenities.",
+      "Poolside Room": "Convenient access to the pool area.",
+      "Standard Room": "Affordable and comfortable standard room."
+    };
+
+    const roomImages = {
+      "Deluxe Suite": "deluxe-suite.jpg",
+      "Family Room": "family-room.jpg",
+      "Executive Room": "executive-room.jpg",
+      "Luxury Suite": "luxury-suite.jpg",
+      "Poolside Room": "poolside-room.jpg",
+      "Standard Room": "standard-room.jpg"
+    };
+
+    // Update room gallery, price, and tooltip based on room type
+    document.getElementById('room-type').addEventListener('change', function() {
+      const selectedRoom = this.value;
+      document.getElementById('room-tooltip').textContent = roomDescriptions[selectedRoom] || "";
+      document.getElementById('room-image').src = roomImages[selectedRoom] || "default-room.jpg";
+      calculatePrice();
+    });
+
+    // Recalculate price based on selected room, dates, and guests
+    function calculatePrice() {
+      const roomType = document.getElementById('room-type').value;
+      const guests = document.getElementById('guests').value;
+      const checkInDate = new Date(document.getElementById('check-in').value);
+      const checkOutDate = new Date(document.getElementById('check-out').value);
+
+      if (roomType && checkInDate && checkOutDate && guests) {
+        const days = (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24);
+        const price = days * roomPrices[roomType] * guests;
+        document.getElementById('price').value = `₹ ${price || 0}`;
+      }
+    }
+
+    // Confirm booking with popup
+    function confirmBooking() {
+      return confirm("Are you sure you want to confirm this booking?");
+    }
+
+    // Validate check-in and check-out dates
+    function validateDates() {
+      const checkInDate = new Date(document.getElementById('check-in').value);
+      const checkOutDate = new Date(document.getElementById('check-out').value);
+
+      if (checkOutDate <= checkInDate) {
+        alert("Check-out date must be later than check-in date.");
+        return false;
+      }
+      return true;
+    }
+
+    // Event listeners to update price when inputs change
+    document.getElementById('guests').addEventListener('change', calculatePrice);
+    document.getElementById('check-in').addEventListener('input', calculatePrice);
+    document.getElementById('check-out').addEventListener('input', calculatePrice);
+  </script>
+</body>
+</html>

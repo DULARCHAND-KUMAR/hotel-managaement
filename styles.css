@@ -1,0 +1,738 @@
+
+/* Global Body Styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f5f5; /* Light gray background for the body */
+    color: #333; /* Dark gray text color for better readability */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+ /* Header Section */
+header {
+  background-color: #507080;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 30% 30% 10px 10px; /* Top-left, top-right, bottom-right, bottom-left */
+
+  margin-top:2px; /* Space from the top */
+  width: 95%; /* Optional: Make the header slightly smaller than the full width */
+  margin-left:1%; /* Automatically adjust left margin */
+  margin-right:1%; /* Automatically adjust right margin */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Optional shadow for depth */
+}
+
+  
+  /* Header and Navigation */
+  footer {
+    background-color: rgba(50, 50, 50, 0.7); /* Dark semi-transparent background */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius:10px;
+  }
+  
+  header img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%; /* Circular logo */
+    margin-right: 20px;
+    transition: transform 0.3s ease; /* Smooth transform on hover */
+  }
+  
+  header img:hover {
+    transform: scale(1.11) rotate(2deg); /* Slightly enlarge and rotate */
+  }
+  
+ /* Navigation Links Animation with Box */
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  padding: 10px 20px; /* Add padding to make the box more visible */
+  transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Add box-shadow transition */
+  display: inline-block; /* Make it behave like a block element for padding */
+  border-radius: 5px; /* Optional: Rounded corners for the box */
+}
+
+nav a:hover {
+  transform: scale(1.1); /* Zoom in effect */
+  color: #333870; /* Change color on hover */
+  box-shadow: 0 0 10px rgba(95, 91, 75, 0.8); /* Add glow/box-shadow effect */
+  background-color: rgba(255, 221, 87, 0.1); /* Optional: Add a slight background color on hover */
+}
+            
+
+
+
+             /* INDEX.HTML*/
+  
+ /* Hero Section */
+#hero {
+  background-image: url('image/IMG2.jpg'); /* Background image */
+  background-attachment: fixed;
+  background-size: cover; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the image */
+  border-radius: 15px; /* Softened rounded corners for a more modern look */
+  height: 80vh; /* Increased height for better visual impact */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Use white text for better contrast */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
+  padding: 20px; /* Added padding for spacing */
+  position: relative; /* Necessary for layering */
+}
+
+/* Add an overlay to darken the background for better text visibility */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+  border-radius: 15px; /* Match border radius of the section */
+  z-index: -1; /* Place overlay behind content */
+}
+
+  
+ /* About Us Section */
+#about {
+  background-color: #a7b8c0; /* Light purple background */
+  padding: 40px 20px; /* Increased padding for better spacing */
+  text-align: center;
+  border-radius: 20px; /* Softer, more modern rounded corners */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  max-width: 1200px; /* Ensure the section doesn't stretch too wide on large screens */
+  margin: 50px auto; /* Center the section with margin at the top */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+#about:hover {
+  transform: scale(1.02); /* Slight zoom effect on hover for interaction */
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2); /* Deepen the shadow for hover effect */
+}
+
+#about h2 {
+  font-size: 2.5em; /* Increased font size for better emphasis */
+  color: #3c3a3a; /* Darker color for the heading to create contrast */
+  margin-top: 0; /* Remove the top margin to make it look more balanced */
+  margin-bottom: 15px; /* More space below the heading */
+  font-weight: bold; /* Make the heading bold for emphasis */
+  letter-spacing: 1px; /* Slight letter spacing for a modern look */
+}
+
+/* Additional styling for paragraph text */
+#about p {
+  font-size: 1.1em; /* Slightly larger font for better readability */
+  line-height: 1.6; /* Increased line height for easier reading */
+  color: #555; /* Darker gray for the paragraph text */
+  max-width: 900px; /* Limit the width of the paragraph for better readability */
+  margin: 0 auto; /* Center the paragraph */
+}
+/* Featured Rooms Section */
+#rooms {
+  background-color: #695866; /* Soft, warm background color */
+  padding: 50px 20px; /* Increased padding for more space */
+  text-align: center;
+  border-radius: 15px; /* Rounded corners for a softer look */
+  margin-top: 30px; /* Space between sections */
+}
+
+.room-card {
+  display: inline-block;
+  width: 300px;
+  margin: 20px;
+  border-radius: 15px; /* Softer, modern corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow with increased depth */
+  overflow: hidden;
+  background-color: rgb(193, 195, 184); /* Light beige background for room cards */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.room-card:hover {
+  transform: translateY(-10px); /* Slight upward movement for hover */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.room-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Ensures images maintain their aspect ratio */
+  border-bottom: 5px solid #507080; /* Adds a small border at the bottom for style */
+  transition: transform 0.3s ease; /* Smooth transition on hover */
+}
+
+.room-card img:hover {
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+.room-card h3 {
+  padding: 10px 0;
+  font-size: 1.6em; /* Slightly larger font size for titles */
+  color: #507080; /* Accent color for the text */
+  font-weight: bold; /* Emphasizes the room title */
+}
+
+.room-card p {
+  padding: 0 10px 20px; /* Adjusted padding for spacing */
+  font-size: 1.1em; /* Slightly larger text for descriptions */
+  color: #4a4a4a; /* Darker text color for better readability */
+  line-height: 1.5; /* Improved readability with line spacing */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+  .room-card {
+    width: 90%; /* Full-width for smaller screens */
+  }
+
+  #rooms {
+    padding: 30px 10px; /* Adjusted padding for smaller screens */
+  }
+}
+/* Amenities Section */
+#amenities {
+  background-color: #4c424a; /* Dark gray background */
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slight shadow around the section */
+  margin: 20px auto;
+  max-width: 1200px; /* Limiting the width for better appearance on large screens */
+}
+
+.amenities-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Spacing between items */
+}
+
+.amenity-item {
+  width: 180px; /* Slightly wider to create more space */
+  margin: 10px;
+  text-align: center;
+  background-color: #695866;
+  border-radius: 12px; /* More subtle roundness */
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.amenity-item:hover {
+  transform: translateY(-10px); /* Elevates the item on hover */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.amenity-item h3 {
+  font-size: 1.2em; /* Increased font size for headings */
+  color: #fff; /* White text for contrast */
+  margin-bottom: 10px;
+}
+
+.amenity-item p {
+  font-size: 0.9em; /* Smaller description font size */
+  color: #ddd; /* Light gray text for description */
+}
+
+  /* Footer */
+footer {
+  background-color: #333; /* Dark background for contrast */
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 1em; /* Slightly larger font for readability */
+  border-top: 3px solid #695866; /* Subtle border at the top */
+  margin-top: 30px; /* Increased space above the footer */
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); /* Light shadow for separation */
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #695866; /* Color change on hover */
+}
+
+footer p {
+  margin: 10px 0;
+  font-size: 0.9em; /* Smaller font for additional text */
+}
+
+footer .social-icons {
+  margin-top: 15px;
+}
+
+footer .social-icons a {
+  margin: 0 10px;
+  font-size: 1.3em;
+  color: #fff;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+footer .social-icons a:hover {
+  transform: scale(1.1); /* Slight scaling effect on hover */
+}
+          
+
+
+            /* ROOMS.HTML*/
+
+        
+    
+            /* Featured Rooms Section */
+            #rooms {
+              display: flex;
+              justify-content: space-between;
+              flex-wrap: wrap;
+              gap: 20px;
+              padding: 40px;
+              background: linear-gradient(135deg, #e0f7fa, #80deea);
+            }
+        
+            /* Individual Room Cards */
+            .room-card {
+              width: 30%;
+              background-color: #ffffff;
+              padding: 20px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+              border-radius: 12px;
+              text-align: center;
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+        
+            .room-card:hover {
+              transform: scale(1.05);
+              box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+        
+            .room-card img {
+              width: 100%;
+              height: auto;
+              border-radius: 8px;
+              margin-bottom: 15px;
+            }
+        
+            .room-card h3 {
+              color: #324148;
+              margin-bottom: 10px;
+            }
+        
+            .room-card p {
+              font-size: 1em;
+              color: #666;
+              margin-bottom: 15px;
+            }
+        
+            .room-card .price {
+              font-size: 1.2em;
+              color: #507080;
+              margin-bottom: 15px;
+            }
+        
+            .room-card .book-btn {
+              background-color: #507080;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+        
+            .room-card .book-btn:hover {
+              background-color: #3a5060;
+              transform: translateY(-2px);
+            }
+        
+        
+            /* Featured Rooms Title Styling */
+        h2 {
+          text-align: center;
+          font-size: 2.8em; /* Slightly larger font */
+          color: #2d3e50; /* Darker color for better contrast */
+          margin: 50px 0; /* Increased top and bottom margin */
+          font-weight: 600; /* Bolder font weight for emphasis */
+          letter-spacing: 1px; /* Adds space between letters for readability */
+          position: relative;
+        }
+        
+        h2::after {
+          content: '';
+          display: block;
+          width: 100px; /* Width of the underline */
+          height: 3px; /* Thickness of the underline */
+          background-color: #80deea; /* Accent color */
+          margin: 10px auto 0; /* Centered below the heading */
+          border-radius: 2px;
+        }
+        
+            
+        
+           
+            /* Amenities Section */
+            #amenities {
+              padding: 40px;
+              background-color: #ffffff;
+            }
+        
+            .amenities-list {
+              display: flex;
+              justify-content: space-around;
+              flex-wrap: wrap;
+            }
+        
+            .amenity-item {
+              width: 20%;
+              text-align: center;
+              padding: 20px;
+              margin: 10px;
+              background-color: #e0f7fa;
+              border-radius: 8px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        
+            .amenity-item h3 {
+              color: #324148;
+            }
+        
+            .amenity-item p {
+              color: #666;
+              font-size: 1em;
+            }
+        
+            /* Footer Styling */
+            footer {
+              text-align: center;
+              background-color: #507080;
+              color: white;
+              padding: 20px;
+            }
+        
+            footer a {
+              color: white;
+              text-decoration: none;
+            }
+        
+            footer a:hover {
+              text-decoration: underline;
+            }
+          
+
+
+
+            /*BOOKING.HTML*/
+
+        
+    /* Add some basic styling for the form */
+    .booking-form {
+      width: 85%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #969393;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .booking-form label {
+      font-size: 1.1em;
+      margin-bottom: 8px;
+      display: block;
+      font-weight: bold;
+    }
+
+    .booking-form input,
+    .booking-form select,
+    .booking-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    /* Select room type dropdown styling */
+    .booking-form select {
+      border: 2px solid #ccc;
+      font-size: 1em;
+    }
+
+    .booking-form select:hover {
+      background-color: #f2f2f2;
+      border-color: #507080;
+    }
+
+    .booking-form select:focus {
+      outline: none;
+      border-color: #507080;
+      background-color: #e0f7fa;
+      animation: bounce 0.5s ease-in-out;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    .booking-form button {
+      width: 100%;
+      padding: 15px;
+      background-color: #507080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .booking-form button:hover {
+      background-color: #3a5060;
+    }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -100px;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+    }
+
+    .room-gallery {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .room-gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .booking-form {
+        width: 100%;
+        padding: 15px;
+      }
+    }
+  
+
+
+
+                 /* FEEDBACK.HTML*/
+                
+    .feedback-section, .review-section, .contact-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .feedback-section h2,
+    .review-section h2,
+    .contact-section h2 {
+      color: #393c3d;
+      margin-bottom: 20px;
+    }
+
+    /* Styling for feedback form */
+    .feedback-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      background-color: #969393;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .feedback-form label {
+      font-size: 1em;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .feedback-form button {
+      background-color: #507080;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Star Rating styling */
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      font-size: 2em;
+    }
+
+    .stars .star {
+      cursor: pointer;
+      color: gray;
+    }
+
+    .stars .star.selected {
+      color: gold;
+    }
+
+   /* Social Media Links styling */
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.social-media a {
+  color: #324148;
+  text-decoration: none;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+.social-media a:hover {
+  transform: scale(1.1); /* Slightly increase the size of the icon */
+  opacity: 0.8; /* Add opacity change for hover effect */
+}
+
+.social-media img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition on hover */
+}
+
+.social-media a:hover img {
+  transform: scale(1.1); /* Slightly enlarge the image when hovered */
+  opacity: 0.8; /* Make the image slightly transparent */
+}
+
+
+    /* Reviews styling */
+    .reviews {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: row;
+    }
+
+    .review-card {
+      width: 300px;
+      padding: 20px;
+      background-color: #969393;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .review-card p {
+      color: #423b3b;
+    }
+
+    .review-card .customer-name {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #405e6d;
+    }
+
+    /* Contact Section Box Styling */
+    .contact-box {
+      background-color: #969393;
+      border: 1px solid #507080;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Styles for the error and success messages */
+    .message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 25px;
+      border-radius: 5px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      font-size: 16px;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+    }
+
+    .message.success {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .message.error {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    /* Animation for message fade-in */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }

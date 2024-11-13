@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Management</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+  
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="image/IMG6.png" alt="Hotel Logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="rooms.html">Rooms</a>
+      <a href="booking.html">Booking</a>
+      <a href="feedback.html">Feedback</a>
+    </nav>
+  </header>
+
+  <!-- Error message container -->
+  <div id="error-message" style="display: none; color: red; text-align: center;"></div>
+
+  <!-- Customer Feedback Section -->
+  <section class="feedback-section">
+    <h2>We Value Your Feedback</h2>
+    <form id="feedback-form" action="submit_feedback.php" method="POST" class="feedback-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your Name">
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Your Email">
+      
+      <label for="feedback">Feedback</label>
+      <textarea id="feedback" name="feedback" rows="4" required placeholder="Your feedback or suggestions"></textarea>
+      
+      <label for="rating">Rating</label>
+      <div class="stars" id="rating">
+        <span class="star" onclick="rateRoom(1)">&#9733;</span>
+        <span class="star" onclick="rateRoom(2)">&#9733;</span>
+        <span class="star" onclick="rateRoom(3)">&#9733;</span>
+        <span class="star" onclick="rateRoom(4)">&#9733;</span>
+        <span class="star" onclick="rateRoom(5)">&#9733;</span>
+      </div>
+      <input type="hidden" id="rating-value" name="rating">
+      
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </section>
+
+  <!-- What Customers Say (Reviews) Section -->
+  <section class="review-section">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews">
+      <div class="review-card">
+        <p>"Amazing experience! The room was clean, and the staff were very friendly. Highly recommend this hotel."</p>
+        <span class="customer-name">- Ayesha.</span>
+      </div>
+      <div class="review-card">
+        <p>"I loved the spa and pool. Great location and excellent service. Will definitely come back!"</p>
+        <span class="customer-name">- Deepak .</span>
+      </div>
+      <div class="review-card">
+        <p>"One of the best hotels I've stayed at. Worth every penny. The food was delicious and the room was very comfortable."</p>
+        <span class="customer-name">- Maryam .</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="contact-section">
+    <h2>Connect With Us</h2>
+    <div class="contact-box">
+      <p>We're here to help you with any questions or information you need. Feel free to reach out to us.</p>
+      <p>Email: support@ourhotel.com | Phone: +1 234 567 890</p>
+
+      <!-- Social Media Links with Icons -->
+      <div class="social-media">
+        <a href="https://www.instagram.com/ourhotel" target="_blank">
+          <img src="image/insta.jpeg" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/ourhotel" target="_blank">
+          <img src="image/facebook.png" alt="Facebook">
+        </a>
+        <a href="https://twitter.com/ourhotel" target="_blank">
+          <img src="image/twitter.jpeg" alt="Twitter">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Our Hotel. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Function to handle star rating
+    function rateRoom(rating) {
+      const stars = document.querySelectorAll('.star');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('selected');
+        } else {
+          star.classList.remove('selected');
+        }
+      });
+      document.getElementById('rating-value').value = rating;
+    }
+
+    // Custom form validation and AJAX submission
+    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+      event.preventDefault();  // Prevent the form from submitting normally
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const feedback = document.getElementById('feedback').value;
+      const rating = document.getElementById('rating').value;
+      const errorMessageDiv = document.getElementById('error-message');
+      
+      // Clear previous error messages
+      errorMessageDiv.innerHTML = '';
+      
+      let errorMessage = '';  // Variable to store all error messages
+      let formIsValid = true;
+
+      // Check if fields are filled
+      if (!name) {
+        errorMessage += '<p>Please provide your name.</p>';
+        formIsValid = false;
+      }
+
+      if (!email) {
+        errorMessage += '<p>Please provide your email.</p>';
+        formIsValid = false;
+      }
+
+      if (!feedback) {
+        errorMessage += '<p>Please provide your feedback.</p>';
+        formIsValid = false;
+      }
+
+      if (!document.getElementById('rating-value').value) {
+        errorMessage += '<p>Please provide a rating.</p>';
+        formIsValid = false;
+      }
+
+      if (!formIsValid) {
+        // Display the error messages
+        errorMessageDiv.innerHTML = errorMessage;
+        errorMessageDiv.style.display = 'block';  // Make error message visible
+        return;  // Stop form submission
+      }
+
+      // If no errors, submit form via AJAX
+      const formData = new FormData(this);
+
+      fetch('submit_feedback.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Display success message instead of error
+          showMessage('Thank you for your feedback!', 'success');
+          document.getElementById('feedback-form').reset();
+        } else {
+          showMessage('There was an error submitting your feedback. Please try again.', 'error');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        showMessage('There was an error submitting your feedback. Please try again.', 'error');
+      });
+    });
+
+    // Function to display success or error messages
+    function showMessage(message, type) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${type}`;
+      messageDiv.innerHTML = message;
+      document.body.appendChild(messageDiv);
+
+      // Remove the message after 5 seconds
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
